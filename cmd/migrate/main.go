@@ -9,15 +9,16 @@ import (
 	"github.com/golang-migrate/migrate/v4/database/mysql"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 
+	"github.com/pandfun/ecom/config"
 	"github.com/pandfun/ecom/db"
 )
 
 func main() {
 	db, err := db.NewMySQLStorage(mysqlCfg.Config{
-		User:                 "krish",
-		Passwd:               "krish",
-		Addr:                 "127.0.0.1:3306",
-		DBName:               "ecom",
+		User:                 config.Envs.DBUser,
+		Passwd:               config.Envs.DBPassword,
+		Addr:                 config.Envs.DBAddress,
+		DBName:               config.Envs.DBName,
 		Net:                  "tcp",
 		AllowNativePasswords: true,
 		ParseTime:            true,
